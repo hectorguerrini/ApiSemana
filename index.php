@@ -1,4 +1,4 @@
-<?
+<?php
 	
 $db = mysql_connect("app_semana.mysql.dbaas.com.br", "app_semana", "admin_app") or die("Nao foi possivel conectar ao servidos: ".mysql_error());
 
