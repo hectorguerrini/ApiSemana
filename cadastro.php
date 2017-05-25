@@ -9,8 +9,11 @@ $pw = isset($_GET["pw"]) ? $_GET["pw"] : "";
 $cpf = isset($_GET["cpf"]) ? $_GET["cpf"] : "";
 echo $nome;
 echo $email;
-$result = mysqli_query($db,"INSERT INTO participante (nome_participante,email_participante, password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
-
+if($nome!= ""){
+   $result = mysqli_query($db,"INSERT INTO participante (nome_participante,email_participante, password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
+}else{
+   $result = 0
+}
 if ($result == 1) {
     $print["success"] = "Conta criada com sucesso ".$email;
 }else{
