@@ -37,7 +37,13 @@ password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')")
 	if($ac == "login"){
 	    $email = isset($_GET["email"]) ? $_GET["email"] : "";
             $pw = isset($_GET["pw"]) ? $_GET["pw"] : "";
-	    
+	    $result = mysqli_query($db,"SELECT * FROM participante WHERE email_participante = '$email' and password_participante = '$pw' ") or die("Nao foi possivel realizar query: ".mysqli_error($db));
+	    if (mysqli_num_rows($result) > 0) {
+    	        $print["success"] = "Bem Vindo ".$email;
+	    }else{
+		$print["erro"] = "Erro";
+	    }
+	
 	}
 	break;
     default:
