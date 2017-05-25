@@ -7,7 +7,8 @@ $nome = isset($_GET["nome"]) ? $_GET["nome"] : "";
 $email = isset($_GET["email"]) ? $_GET["email"] : "";
 $pw = isset($_GET["pw"]) ? $_GET["pw"] : "";
 $cpf = isset($_GET["cpf"]) ? $_GET["cpf"] : "";
-
+echo $nome;
+echo $email;
 $result = mysqli_query($db,"INSERT INTO participante (name_participante,email_participante, password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 
 if ($result == 1) {
@@ -15,6 +16,7 @@ if ($result == 1) {
 }else{
     $print["error"] = "error";
 }
+
 echo json_encode($print);
 mysqli_close($db);
 ?>
