@@ -20,7 +20,7 @@ switch($table){
 	break;
     case "participante":
 	$ac = isset($_GET["ac"]) ? $_GET["ac"] : "";
-	if($ac == "cd"){
+	if($ac == "cadastro"){
 	
 	    $nome = isset($_GET["nome"]) ? $_GET["nome"] : "";
             $email = isset($_GET["email"]) ? $_GET["email"] : "";
