@@ -5,12 +5,14 @@ mysqli_select_db($db,"app_semana") or die("Nao foi possivel localizar banco de d
 mysqli_set_charset($db,"utf8");
 $table = isset($_GET["table"]) ? $_GET["table"] : "";
 $periodo = isset($_GET["periodo"]) ? $_GET["periodo"] : "";
+$state = isset($_GET["state"]) ? $_GET["state"] : "";
 if($table == "curso"){
     $result = mysqli_query($db,"SELECT * FROM curso WHERE periodo_curso = '$periodo'") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 }
 else{
     $result = mysqli_query($db,"SELECT * FROM $table") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 }
+
 if (mysqli_num_rows($result) == 0) {
     echo ("Nenhuma linha foi achada");
     exit;
