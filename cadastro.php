@@ -20,7 +20,7 @@ if ($result == 1) {
     $print["error"] = "error";
 }
 
-echo json_encode($print);
+echo json_encode($print, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 mysqli_close($db);
 ?>
 
