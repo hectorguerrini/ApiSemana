@@ -29,9 +29,9 @@ switch($table){
             $result = mysqli_query($db,"INSERT INTO participante (nome_participante,email_participante,
 password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 	    if ($result == 1) {
-    		$print["success"] = "Conta criada com sucesso ".$email;
+    		$print["retorno"] = "Conta criada com sucesso ".$email;
 	    }else{
-    		$print["error"] = "error";
+    		$print["retorno"] = "error";
 	    }
 	}
 	if($ac == "login"){
@@ -39,9 +39,9 @@ password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')")
             $pw = isset($_GET["pw"]) ? $_GET["pw"] : "";
 	    $result = mysqli_query($db,"SELECT * FROM participante WHERE email_participante = '$email' and password_participante = '$pw' ") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 	    if (mysqli_num_rows($result) > 0) {
-    	        $print["success"] = "Bem Vindo ".$email;
+    	        $print["retorno"] = "Bem Vindo ".$email;
 	    }else{
-		$print["erro"] = "Erro";
+		$print["retorno"] = "erro";
 	    }
 	
 	}
