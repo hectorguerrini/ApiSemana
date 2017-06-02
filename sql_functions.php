@@ -24,7 +24,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         
         if($result){
             $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email_participante = ?");
-            $stmt->bind_param("s", $email);
+            $stmt->bind_param('s', $email);
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
@@ -51,7 +51,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         }
     }
     public function verificarUser($email) {
-        $stmt = $this->conn->prepare("SELECT email_participante from participante WHERE email_participante = ?");
+        $stmt = $this->conn->prepare("SELECT * from participante WHERE email_participante = ?");
  
         $stmt->bind_param('s', $email);
  
