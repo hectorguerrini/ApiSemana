@@ -23,7 +23,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         $stmt->close();
         
         if($result){
-            $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email_participante = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
