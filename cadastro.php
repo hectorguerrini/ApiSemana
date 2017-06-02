@@ -1,30 +1,44 @@
 <?php
+require_once 'include/sql_functions.php';
+$db = new sql_functions();
 
-$db = mysqli_connect("app_semana.mysql.dbaas.com.br", "app_semana", "admin_app") or die("Nao foi possivel conectar ao servidos: ".mysqli_connect_erro$
-mysqli_select_db($db,"app_semana") or die("Nao foi possivel localizar banco de dados: ".mysqli_connect_error());
-mysqli_set_charset($db,"utf8");
-$nome = isset($_GET["nome"]) ? $_GET["nome"] : "";
-$email = isset($_GET["email"]) ? $_GET["email"] : "";
-$pw = isset($_GET["pw"]) ? $_GET["pw"] : "";
-$cpf = isset($_GET["cpf"]) ? $_GET["cpf"] : "";
-echo $nome;
-echo $email;
-if($nome!= ""){
-   $result = mysqli_query($db,"INSERT INTO participante (nome_participante,email_participante, password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
-}else{
-   $result = 0
-}
-if ($result == 1) {
-    $print["success"] = "Conta criada com sucesso ".$email;
-}else{
-    $print["error"] = "error";
+$resposta = array("error"=>FALSE);
+
+if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['cpf'])) {
+ 
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $cpf = $_POST['cpf'];
+
+   
+    if ($db->verificarUser($email)) {
+        
+        $resposta["error"] = TRUE;
+        $resposta["error_msg"] = "Usuario já cadastrado com " . $email;
+        echo json_encode($resposta);
+    } else {
+        
+        $user = $db->cadastrarUser($name, $email, $password,$cpf);
+        
+        if ($user) {
+        
+            $resposta["error"] = FALSE
+            $resposta["user"]["nome"] = $user["nome_participante"];
+            $resposta["user"]["email"] = $user["email_participante"];
+           
+            echo json_encode($resposta);
+        } else {
+            // user failed to store
+            $resposta["error"] = TRUE;
+            $resposta["error_msg"] = "Erro desconhecido ocorreu!";
+            echo json_encode($resposta);
+        }
+    }
+} else {
+    $resposta["error"] = TRUE;
+    $resposta["error_msg"] = "Required parameters (name, email or password) is missing!";
+    echo json_encode($resposta);
 }
 
-echo json_encode($print, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-mysqli_close($db);
 ?>
-
-
-
-
-
