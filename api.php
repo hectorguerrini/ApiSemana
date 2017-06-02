@@ -1,8 +1,8 @@
 <?php
 	
-$db = mysqli_connect("app_semana.mysql.dbaas.com.br", "app_semana", "admin_app") or die("Nao foi possivel conectar ao servidos: ".mysqli_connect_error());
-mysqli_select_db($db,"app_semana") or die("Nao foi possivel localizar banco de dados: ".mysqli_connect_error());
-mysqli_set_charset($db,"utf8");
+require_once 'include/sql_functions.php';
+$db = new sql_functions();
+ 
 $table = isset($_GET["table"]) ? $_GET["table"] : "";
 
 switch($table){
