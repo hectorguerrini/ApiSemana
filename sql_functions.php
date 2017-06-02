@@ -18,9 +18,9 @@ class sql_functions{
     public function cadastrarUser($nome, $email, $password, $cpf){
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
 password_participante,cpf_participante) VALUES (?,?,?,?)");
-        $stmt->bind_param("ss",$nome,$email,$password,$cpf);
+        $stmt->bind_param('ssss',$nome,$email,$password,$cpf);
         $result = $stmt->execute();
-        $stmt-close();
+        $stmt->close();
         
         if($result){
             $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email = ?");
@@ -37,7 +37,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
 
     public function loginUser($email,$password){
         $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email = ?");
-        $stmt->bind_param("s",$email);
+        $stmt->bind_param('s',$email);
         if($stmt->execute()){
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
@@ -53,7 +53,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
     public function verificarUser($email) {
         $stmt = $this->conn->prepare("SELECT email from participante WHERE email = ?");
  
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param('s', $email);
  
         $stmt->execute();
  
