@@ -23,7 +23,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
         
         if ($user) {
         
-            $resposta["error"] = FALSE
+            $resposta["error"] = FALSE;
             $resposta["user"]["nome"] = $user["nome_participante"];
             $resposta["user"]["email"] = $user["email_participante"];
            
