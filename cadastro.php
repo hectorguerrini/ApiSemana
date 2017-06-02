@@ -1,5 +1,5 @@
 <?php
-require_once 'include/sql_functions.php';
+require_once('sql_functions.php');
 $db = new sql_functions();
 
 $resposta = array("error"=>FALSE);
