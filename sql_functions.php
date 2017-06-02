@@ -3,7 +3,7 @@ class sql_functions{
     private $conn;
 
     function __construct(){
-        require_once 'Connect.php';
+        require_once('Connect.php');
 
         $db = new connect();
 
@@ -36,7 +36,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
     }
 
     public function loginUser($email,$password){
-        $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email = ?");
+        $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email_participante = ?");
         $stmt->bind_param('s',$email);
         if($stmt->execute()){
             $user = $stmt->get_result()->fetch_assoc();
@@ -51,7 +51,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         }
     }
     public function verificarUser($email) {
-        $stmt = $this->conn->prepare("SELECT email from participante WHERE email = ?");
+        $stmt = $this->conn->prepare("SELECT email_participante from participante WHERE email_participante = ?");
  
         $stmt->bind_param('s', $email);
  
