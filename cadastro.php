@@ -4,9 +4,9 @@ $db = new sql_functions();
 
 $resposta = array("error"=>FALSE);
 
-if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['cpf'])) {
+if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['cpf'])) {
  
-    $name = $_POST['name'];
+    $name = $_POST['nome'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cpf = $_POST['cpf'];
