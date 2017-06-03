@@ -15,7 +15,7 @@ $db = new sql_functions();
     $result = mysqli_query($db,"INSERT INTO participante (nome_participante,email_participante, password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 }
 */
-if(isset($_GET["table"]))
+if(isset($_GET["table"])){
 	$table = isset($_GET["table"]);
 
 	$resposta = $db->listarTabelas($table);
