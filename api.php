@@ -15,8 +15,8 @@ $db = new sql_functions();
     $result = mysqli_query($db,"INSERT INTO participante (nome_participante,email_participante, password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 }
 */
-if(isset($_GET["table"])){
-	$table = isset($_GET["table"]);
+$table = isset($_GET["table"]);
+if($$table != null){
 
 	$resposta = $db->listarTabelas($table);
 	echo json_encode($resposta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -31,7 +31,7 @@ $print = array();
 while($row = mysqli_fetch_assoc($result)){
     $print[] = $row;
 }*/
-echo json_encode($print, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+//echo json_encode($print, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
 
 
