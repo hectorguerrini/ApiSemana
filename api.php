@@ -20,7 +20,7 @@ $resposta = array();
 if($$table != null){
 
 	$resposta = $db->listarTabelas($table);
-	echo json_encode($resposta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+	echo json_encode($resposta);
 }
 
 
