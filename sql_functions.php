@@ -68,9 +68,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         }
     }
     public function listarTabelas($table){
-        $stmt = $this->conn->prepare("SELECT * FROM ?");
-
-        $stmt->bind_param('s',$table);
+        $stmt = $this->conn->prepare("SELECT * FROM '$table' ");
 
         if($stmt->execute()){
             while($row = $stmt->fetch_assoc()){
@@ -84,7 +82,5 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
             return NULL;
         }
     }
-    
-
 }
 ?>
