@@ -17,9 +17,9 @@ $db = new sql_functions();
 */
 $table = isset($_GET["table"]);
 $resposta = array();
-if($$table != null){
+if($table != null){
 
-	$resposta = $db->listarTabelas($table);
+	$resposta = $db->listarTabelas();
 	echo json_encode($resposta);
 }
 
