@@ -71,10 +71,10 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         $stmt = $this->conn->prepare("SELECT * FROM tema");
         $tables = array();
         if($stmt->execute()){
-            while($row = $stmt->get_result()->fetch_assoc()){
+            while($row = $stmt->fetch_assoc()){
                 $tables[] = $row;
             }
-            
+            $stmt->close();
             return $tables;
         }
     }    
