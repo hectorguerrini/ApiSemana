@@ -15,14 +15,12 @@ $db = new sql_functions();
     $result = mysqli_query($db,"INSERT INTO participante (nome_participante,email_participante, password_participante,cpf_participante) VALUES ('$nome','$email','$pw','$cpf')") or die("Nao foi possivel realizar query: ".mysqli_error($db));
 }
 */
-$table = isset($_GET["table"]);
 
 $resposta=array();
-if($table != null){
-    print_r($table);
+if(isset($_GET["table"])){  
+    $table = $_GET["table"];
 	$resposta = $db->listarTabelas($table);
-    print_r($resposta);
-	echo json_encode($resposta);
+	echo json_encode($resposta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 

@@ -68,15 +68,16 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         }
     }
     public function listarTabelas($table){
-        $sql="SELECT * FROM tema";
-        $stmt = $this->conn->prepare($sql);
+        $sql="SELECT * FROM ".$table;
+        $stmt = $this->conn->query($sql);
         $print=array();
-        if($stmt->execute()){
-            while($row = $result->fetch_assoc()){
+        if($stmt){
+            while($row = $stmt->fetch_assoc()){
                 $print[]=$row;
             }
+            $stmt->close();
         }
-        $stmt->close();
+        
         return $print;
     }    
 }
