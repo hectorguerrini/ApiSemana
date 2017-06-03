@@ -52,7 +52,7 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
     }
     public function verificarUser($email) {
         $stmt = $this->conn->prepare("SELECT email_participante from participante WHERE email_participante = ?");
- 
+
         $stmt->bind_param('s', $email);
  
         $stmt->execute();
@@ -68,17 +68,15 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         }
     }
     public function listarTabelas($table){
-        $stmt = $this->conn->prepare("SELECT * FROM tema ");
-
+        $stmt = $this->conn->prepare("SELECT * FROM tema");
+        $tables = array();
         if($stmt->execute()){
             while($row = $stmt->get_result()->fetch_assoc()){
                 $tables[] = $row;
             }
             
             return $tables;
-        }else{
-            return NULL;
         }
-    }
+    }    
 }
 ?>
