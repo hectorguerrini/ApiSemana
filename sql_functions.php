@@ -68,12 +68,12 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         }
     }
     public function listarTabelas($table){
-        $result = $this->conn->query("SELECT * FROM $table");
+        $result = $this->conn->query("SELECT * FROM ".$table);
+        $print=array();
         while($row = $result->fetch_assoc()){
-            echo $row;
+        
             $print[]=$row;
         }
-        $this->conn->close();
         return $print;
     }    
 }

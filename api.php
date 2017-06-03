@@ -16,11 +16,12 @@ $db = new sql_functions();
 }
 */
 $table = isset($_GET["table"]);
-echo $table;
+
 $resposta=array();
 if($table != null){
-    echo $table;
+    print_r($table);
 	$resposta = $db->listarTabelas($table);
+    print_r($resposta);
 	echo json_encode($resposta);
 }
 
