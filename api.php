@@ -17,6 +17,7 @@ $db = new sql_functions();
 */
 $table = isset($_GET["table"]);
 echo $table;
+$resposta=array();
 if($table != null){
     echo $table;
 	$resposta = $db->listarTabelas($table);
