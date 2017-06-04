@@ -6,8 +6,9 @@ class sql_functions{
         require_once('Connect.php');
 
         $db = new connect();
-
+        
         $this->conn = $db->conectar();
+        $this->conn->set_charset("utf8");
 
     }
     function __destruct(){
@@ -83,20 +84,20 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
         
         return $print;
     }   
-    public function listarPatrocinador(){
-        $sql="SELECT * FROM patrocinadores";  
+    public function listarCursos($periodo){
+        $sql="SELECT * FROM curso WHERE periodo_curso = '$periodo'";  
+        
         $stmt = $this->conn->query($sql);
-        $patrocinador=array();
+        $curso=array();
 
         if($stmt){  
             while($row = $stmt->fetch_assoc()){
-                $patrocinador[]=$row; 
+                $curso[]=$row; 
             }
-            
+            $stmt->close();
         }
-        $stmt->close();
         
-        return $patrocinador;
+        return $curso;
     }    
 }
 ?>
