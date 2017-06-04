@@ -69,16 +69,34 @@ password_participante,cpf_participante) VALUES (?,?,?,?)");
     }
     public function listarTabelas($table){
         $sql="SELECT * FROM ".$table;
+        
         $stmt = $this->conn->query($sql);
         $print=array();
+        
         if($stmt){
+            
             while($row = $stmt->fetch_assoc()){
-                $print[]=$row;
+                $print[]=$row; 
             }
             $stmt->close();
         }
         
         return $print;
+    }   
+    public function listarPatrocinador(){
+        $sql="SELECT * FROM patrocinadores";  
+        $stmt = $this->conn->query($sql);
+        $patrocinador=array();
+
+        if($stmt){  
+            while($row = $stmt->fetch_assoc()){
+                $patrocinador[]=$row; 
+            }
+            
+        }
+        $stmt->close();
+        
+        return $patrocinador;
     }    
 }
 ?>

@@ -16,10 +16,15 @@ $db = new sql_functions();
 }
 */
 
-$resposta=array();
+
 if(isset($_GET["table"])){  
     $table = $_GET["table"];
-	$resposta = $db->listarTabelas($table);
+    
+    $resposta = $db->listarTabelas($table);
+
+
+
+	
 	echo json_encode($resposta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
