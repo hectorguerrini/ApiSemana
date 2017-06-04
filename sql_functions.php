@@ -99,6 +99,13 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?)");
         }
         
         return $curso;
-    }    
+    }
+    public function adcionarPontos(){
+        $sql = "UPDATE participante SET pontos_participante = 50 WHERE id_participante = 1";
+    
+        $stmt = $this->conn->query($sql);
+
+       
+    } 
 }
 ?>
