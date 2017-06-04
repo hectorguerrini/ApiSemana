@@ -10,6 +10,10 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cpf = $_POST['cpf'];
+    $rg = $_POST['rg'];
+    $data = $_POST['data'];
+    $tel = $_POST['tel'];
+    $cel = $_POST['cel'];
 
    
     if ($db->verificarUser($email)) {
@@ -19,7 +23,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
         echo json_encode($resposta);
     } else {
         
-        $user = $db->cadastrarUser($nome, $email, $password,$cpf);
+        $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$tel,$cel);
         
         if ($user) {
         

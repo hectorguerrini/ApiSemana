@@ -16,10 +16,11 @@ class sql_functions{
 
     }
 
-    public function cadastrarUser($nome, $email, $password, $cpf){
+    public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$tel,$cel){
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
-password_participante,cpf_participante) VALUES (?,?,?,?)");
-        $stmt->bind_param('ssss',$nome,$email,$password,$cpf);
+password_participante,cpf_participante,rg_participante,birthdate_participante,telefone_participante,
+celular_participante) VALUES (?,?,?,?,?,?,?,?)");
+        $stmt->bind_param('ssssssss',$nome,$email,$password,$cpf,$rg,$data,$tel,$cel);
         $result = $stmt->execute();
         $stmt->close();
         
