@@ -16,12 +16,13 @@ class sql_functions{
 
     }
 
-    public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$tel,$cel){
-        if(strlen($password) >=4 && strlen($password) <=16){
+    public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$sexo,$tel,$cel){
+       
+            
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
-password_participante,cpf_participante,rg_participante,birthdate_participante,telefone_participante,
-celular_participante) VALUES (?,?,?,?,?,?,?,?)");
-        $stmt->bind_param('ssssssss',$nome,$email,$password,$cpf,$rg,$data,$tel,$cel);
+password_participante,cpf_participante,rg_participante,birthdate_participante,sexo_participante,telefone_participante,
+celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param('ssssssss',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel);
         $result = $stmt->execute();
         $stmt->close();
         
@@ -36,9 +37,7 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?)");
         } else {
             return false;
         }
-        }else{
-            return false;
-        }
+        
     }
 
     public function loginUser($email,$password){

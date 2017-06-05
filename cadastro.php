@@ -14,6 +14,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
     $data = $_POST['data'];
     $tel = $_POST['tel'];
     $cel = $_POST['cel'];
+    $sexo = $_POST['sexo']
 
    
     if ($db->verificarUser($email)) {
@@ -22,21 +23,25 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
         $resposta["error_msg"] = "Usuario já cadastrado com " . $email;
         echo json_encode($resposta);
     } else {
+        if(strlen($password) >=4 && strlen($password) <=16){
+            $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel);
         
-        $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$tel,$cel);
+            if ($user) {
         
-        if ($user) {
-        
-            $resposta["error"] = FALSE;
-            $resposta["user"]["nome"] = $user["nome_participante"];
-            $resposta["user"]["email"] = $user["email_participante"];
+                $resposta["error"] = FALSE;
+                $resposta["user"]["nome"] = $user["nome_participante"];
+                $resposta["user"]["email"] = $user["email_participante"];
            
-            echo json_encode($resposta);
-        } else {
-            // user failed to store
+                echo json_encode($resposta);
+            } else {
+                // user failed to store
+                $resposta["error"] = TRUE;
+                $resposta["error_msg"] = "Erro desconhecido ocorreu!";
+                echo json_encode($resposta);
+            }
+        }else {
             $resposta["error"] = TRUE;
-            $resposta["error_msg"] = "Erro desconhecido ocorreu!";
-            echo json_encode($resposta);
+            $resposta["error_msg"] = "Insira uma senha entre 4 e 16 caracteres."
         }
     }
 } else {
