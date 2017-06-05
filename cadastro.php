@@ -14,7 +14,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
     $data = $_POST['data'];
     $tel = $_POST['tel'];
     $cel = $_POST['cel'];
-    $sexo = $_POST['sexo']
+    $sexo = $_POST['sexo'];
 
    
     if ($db->verificarUser($email)) {
