@@ -22,7 +22,7 @@ class sql_functions{
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
 password_participante,cpf_participante,rg_participante,birthdate_participante,sexo_participante,telefone_participante,
 celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param('ssssssss',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel);
+        $stmt->bind_param('sssssssss',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel);
         $result = $stmt->execute();
         $stmt->close();
         
