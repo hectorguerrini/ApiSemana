@@ -41,7 +41,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
             }
         }else {
             $resposta["error"] = TRUE;
-            $resposta["error_msg"] = "Insira uma senha entre 4 e 16 caracteres."
+            $resposta["error_msg"] = "Insira uma senha entre 4 e 16 caracteres.";
         }
     }
 } else {
