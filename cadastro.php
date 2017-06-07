@@ -24,7 +24,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
         echo json_encode($resposta);
     } else {
         if(strlen($password) >=4 && strlen($password) <=16){
-            if(validarEmail($email) == true){
+            if($db->validarEmail($email) == true){
                 $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel);
             
                 if ($user) {
@@ -42,7 +42,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
                 }
             }else{
                 $resposta["error"] = TRUE;
-                $resposta["error_msg"] = "Insira um email valido.(ex: nome@email.com)"
+                $resposta["error_msg"] = "Insira um email valido.(ex: nome@email.com)";
                 echo json_encode($resposta);
             }
         }else {
