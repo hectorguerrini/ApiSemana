@@ -24,19 +24,25 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
         echo json_encode($resposta);
     } else {
         if(strlen($password) >=4 && strlen($password) <=16){
-            $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel);
+            if(validarEmail($email) == true){
+                $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel);
+            
+                if ($user) {
         
-            if ($user) {
-        
-                $resposta["error"] = FALSE;
-                $resposta["user"]["nome"] = $user["nome_participante"];
-                $resposta["user"]["email"] = $user["email_participante"];
+                    $resposta["error"] = FALSE;
+                    $resposta["user"]["nome"] = $user["nome_participante"];
+                    $resposta["user"]["email"] = $user["email_participante"];
            
-                echo json_encode($resposta);
-            } else {
-                // user failed to store
+                    echo json_encode($resposta);
+                } else {
+                    
+                    $resposta["error"] = TRUE;
+                    $resposta["error_msg"] = "Erro desconhecido ocorreu!";
+                    echo json_encode($resposta);
+                }
+            }else{
                 $resposta["error"] = TRUE;
-                $resposta["error_msg"] = "Erro desconhecido ocorreu!";
+                $resposta["error_msg"] = "Insira um email valido.(ex: nome@email.com)"
                 echo json_encode($resposta);
             }
         }else {
@@ -47,7 +53,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
     }
 } else {
     $resposta["error"] = TRUE;
-    $resposta["error_msg"] = "Required parameters (name, email or password) is missing!";
+    $resposta["error_msg"] = "Insira os dados necessarios.";
     echo json_encode($resposta);
 }
 

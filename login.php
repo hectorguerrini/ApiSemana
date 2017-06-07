@@ -25,7 +25,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
         // user is not found with the credentials
         $resposta["error"] = TRUE;
-        $resposta["error_msg"] = "Login credentials are wrong. Please try again!";
+        $resposta["error_msg"] = "Credenciais de login  ";
         echo json_encode($resposta);
     }
 } else {

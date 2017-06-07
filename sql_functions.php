@@ -108,7 +108,18 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
     
         $stmt = $this->conn->query($sql);
 
-       
-    } 
+  } 
+  public function validarEmail($str)
+{
+
+    $rule = '/^([0-9,a-z,A-Z,_,-,.]+)([.,_,-]([0-9,a-z,A-Z,_,-,.]+))';
+    $rule.= '*[@]([0-9,a-z,A-Z]+)([.,-]([0-9,a-z,A-Z]+))';
+    $rule.= '*[.]([0-9,a-z,A-Z]){2}([0-9,a-z,A-Z])?$/';
+
+    return (preg_match($rule, $str)? true : false);
+
 }
+
+}
+
 ?>
