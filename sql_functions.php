@@ -103,11 +103,16 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         
         return $curso;
     }
-    public function adcionarPontos(){
-        $sql = "UPDATE participante SET pontos_participante = 50 WHERE id_participante = 1";
+    public function adcionarPontos($email,$pontos){
+        $sql = "UPDATE participante SET pontos_participante = '$pontos' WHERE email_participante = '$email'";
     
         $stmt = $this->conn->query($sql);
-
+        $stmt->close();
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
   } 
   public function listarRanking(){
       $sql = "SELECT nome_participante,pontos_participante FROM participante ORDER BY pontos_participante DESC";
