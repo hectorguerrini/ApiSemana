@@ -109,6 +109,18 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         $stmt = $this->conn->query($sql);
 
   } 
+  public function listarRanking(){
+      $sql = "SELECT nome_participante,pontos_participante FROM participante ORDER BY pontos_participante";
+      $stmt = $this->conn->query($sql);
+      $ranking = array();
+      if($stmt){
+          while($row = $stmt->fetch_assoc()){
+              $ranking[]=$row;
+          }
+          $stmt->close();
+      }
+      return $ranking;
+  }
   public function validarEmail($str)
 {
 

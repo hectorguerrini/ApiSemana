@@ -15,7 +15,8 @@ if(isset($_GET["table"])){
             $resposta = $db->listarCursos($periodo);
 
         }
-            
+    }else if($table == 'ranking'){
+       $resposta = $db->listarRanking();
     }else{
 
         $resposta = $db->listarTabelas($table);
