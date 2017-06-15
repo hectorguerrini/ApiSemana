@@ -8,7 +8,7 @@ if(isset($_POST['email']) && isset($_POST['pontos'])){
     $pontos = $_POST['pontos'];
     $email = $_POST['email'];
 
-    if(db->adcionarPontos($email,$pontos) == true){
+    if($db->adcionarPontos($email,$pontos) == true){
         $resposta["error"] = FALSE;
         echo json_encode($resposta);
     }
