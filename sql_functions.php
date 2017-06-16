@@ -21,8 +21,8 @@ class sql_functions{
             
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
 password_participante,cpf_participante,rg_participante,birthdate_participante,sexo_participante,telefone_participante,
-celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param('sssssssss',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel);
+celular_participante,pontos_participante) VALUES (?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param('sssssssssi',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel,10);
         $result = $stmt->execute();
         $stmt->close();
         
@@ -114,12 +114,10 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         $stmt = $this->conn->query($sql);
         
         if($stmt){
-            
+            $stmt->close();
             return true;
-        }else{
-            
-            return false;
         }
+        
   } 
   public function listarRanking(){
       $sql = "SELECT nome_participante,pontos_participante FROM participante ORDER BY pontos_participante DESC";
