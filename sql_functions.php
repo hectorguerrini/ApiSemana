@@ -16,13 +16,13 @@ class sql_functions{
 
     }
 
-    public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$sexo,$tel,$cel){
+    public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$sexo,$tel,$cel,$pontos){
        
             
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
 password_participante,cpf_participante,rg_participante,birthdate_participante,sexo_participante,telefone_participante,
 celular_participante,pontos_participante) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param('sssssssssi',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel,10);
+        $stmt->bind_param('sssssssssi',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel,$pontos);
         $result = $stmt->execute();
         $stmt->close();
         
@@ -117,7 +117,7 @@ celular_participante,pontos_participante) VALUES (?,?,?,?,?,?,?,?,?,?)");
             $stmt->close();
             return true;
         }
-        
+
   } 
   public function listarRanking(){
       $sql = "SELECT nome_participante,pontos_participante FROM participante ORDER BY pontos_participante DESC";

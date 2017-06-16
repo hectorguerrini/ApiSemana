@@ -25,7 +25,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
     } else {
         if(strlen($password) >=4 && strlen($password) <=16){
             if($db->validarEmail($email) == true){
-                $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel);
+                $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel,10);
             
                 if ($user) {
         
