@@ -16,7 +16,7 @@ class sql_functions{
 
     }
 
-    public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$sexo,$tel,$cel,$pontos){
+    public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$sexo,$tel,$cel){
        
             
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
