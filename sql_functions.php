@@ -26,7 +26,6 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         $result = $stmt->execute();
         $stmt->close();
         
-        
         if($result){
             $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email_participante = ?");
             $stmt->bind_param('s', $email);
@@ -115,10 +114,12 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         $stmt = $this->conn->query($sql);
         
         if($stmt){
-            $stmt->close();
+            
             return true;
+        }else{
+            
+            return false;
         }
-
   } 
   public function listarRanking(){
       $sql = "SELECT nome_participante,pontos_participante FROM participante ORDER BY pontos_participante DESC";
