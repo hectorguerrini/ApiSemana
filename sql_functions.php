@@ -109,10 +109,10 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         $stmt = $this->conn->query($sql);
         
         if($stmt){
-            $stmt->close();
+            
             return true;
         }else{
-            $stmt->close();
+            
             return false;
         }
   } 
