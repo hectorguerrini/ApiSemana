@@ -105,7 +105,7 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
     }
     public function adcionarPontos($email,$pontos){
         $stmt = $this->conn->query("SELECT pontos_participante FROM participante WHERE email_participante = '$email'");
-        $p = $stmt->get_result()->fetch_assoc();
+        $p = $stmt->fetch_assoc();
         $stmt->close();
         $novoPont = $p['pontos_participante'] + $pontos;
         
