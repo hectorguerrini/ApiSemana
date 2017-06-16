@@ -104,13 +104,15 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         return $curso;
     }
     public function adcionarPontos($email,$pontos){
-        $sql = "UPDATE participante SET pontos_participante = '$pontos' WHERE email_participante = '$email'";
+        $sql = "UPDATE participante SET pontos_participante += '$pontos' WHERE email_participante = '$email'";
     
         $stmt = $this->conn->query($sql);
-        $stmt->close();
+        
         if($stmt){
+            $stmt->close();
             return true;
         }else{
+            $stmt->close();
             return false;
         }
   } 
