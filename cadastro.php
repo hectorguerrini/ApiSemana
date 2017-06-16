@@ -25,14 +25,16 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
     } else {
         if(strlen($password) >=4 && strlen($password) <=16){
             if($db->validarEmail($email) == true){
-                $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel,10);
-            
+                $user = $db->cadastrarUser($nome, $email, $password,$cpf,$rg,$data,$sexo,$tel,$cel);
+                
                 if ($user) {
         
                     $resposta["error"] = FALSE;
                     $resposta["user"]["nome"] = $user["nome_participante"];
                     $resposta["user"]["email"] = $user["email_participante"];
-           
+                    if($db->adcionarPontos($email,10) == true){
+                        $resposta["user"]["pontos"] = "10";
+                    }   
                     echo json_encode($resposta);
                 } else {
                     

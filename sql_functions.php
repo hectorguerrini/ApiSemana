@@ -21,10 +21,11 @@ class sql_functions{
             
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
 password_participante,cpf_participante,rg_participante,birthdate_participante,sexo_participante,telefone_participante,
-celular_participante,pontos_participante) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param('sssssssssi',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel,$pontos);
+celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param('sssssssss',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel);
         $result = $stmt->execute();
         $stmt->close();
+        
         
         if($result){
             $stmt = $this->conn->prepare("SELECT * FROM participante WHERE email_participante = ?");
