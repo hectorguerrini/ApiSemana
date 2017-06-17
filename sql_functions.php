@@ -120,10 +120,10 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
        
 
         if($stmt){
-            
+            $stmt->close();
             return true;
         }else{
-            
+            $stmt->close();
             return false;
         }
   } 
