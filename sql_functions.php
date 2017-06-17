@@ -111,7 +111,9 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         $novoPont = $p['pontos_participante'] + $pontos;  
         $sql = "UPDATE participante SET pontos_participante = '$novoPont' WHERE email_participante = '$email'";
         $stmt = $this->conn->query($sql);
-        $stmt->close();
+
+      
+
 
         $sql = "INSERT INTO participante_curso(id_curso,email_participante) VALUES ('$curso','$email')";
         $stmt = $this->conn->query($sql);    
