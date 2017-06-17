@@ -128,7 +128,7 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         }
   } 
   public function listarRanking(){
-      $sql = "SELECT nome_participante,pontos_participante FROM participante ORDER BY pontos_participante DESC";
+      $sql = "SELECT nome_participante,pontos_participante,email_participante FROM participante ORDER BY pontos_participante DESC";
       $stmt = $this->conn->query($sql);
       $ranking = array();
       if($stmt){
