@@ -16,6 +16,7 @@ if(isset($_POST['email']) && isset($_POST['pontos']) && isset($_POST['curso'])){
         $resposta["error"] = TRUE;
         $resposta["error_msg"] = "Não foi possivel adcionar pontos: QRcode ja utilizado";
         echo json_encode($resposta);
+        
     }
 }else{
     $resposta["error"] = TRUE;

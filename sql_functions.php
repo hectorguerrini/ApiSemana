@@ -14,15 +14,16 @@ class sql_functions{
     function __destruct(){
 
 
+
     }
 
     public function cadastrarUser($nome, $email, $password, $cpf,$rg,$data,$sexo,$tel,$cel){
-       
-            
+        $password_cryp = $this->hashSSHA($password);
+
         $stmt = $this->conn->prepare("INSERT INTO participante (nome_participante,email_participante,
 password_participante,cpf_participante,rg_participante,birthdate_participante,sexo_participante,telefone_participante,
 celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param('sssssssss',$nome,$email,$password,$cpf,$rg,$data,$sexo,$tel,$cel);
+        $stmt->bind_param('sssssssss',$nome,$email,$password_cryp,$cpf,$rg,$data,$sexo,$tel,$cel);
         $result = $stmt->execute();
         $stmt->close();
         
@@ -46,9 +47,11 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         if($stmt->execute()){
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-
+           
+            
+            $hash = $this->checkhashSSHA($password);
             $db_password = $user['password_participante'];
-            if($db_password == $password){
+            if($db_password == $hash){
                 return $user;
             }
         }else{
@@ -126,8 +129,8 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
             
             return false;
         }
-  } 
-  public function listarRanking(){
+    } 
+    public function listarRanking(){
       $sql = "SELECT nome_participante,pontos_participante,email_participante FROM participante ORDER BY pontos_participante DESC";
       $stmt = $this->conn->query($sql);
       $ranking = array();
@@ -138,9 +141,9 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
           $stmt->close();
       }
       return $ranking;
-  }
-  public function validarEmail($str)
-{
+    }
+    public function validarEmail($str)
+    {
 
     $rule = '/^([0-9,a-z,A-Z,_,-,.]+)([.,_,-]([0-9,a-z,A-Z,_,-,.]+))';
     $rule.= '*[@]([0-9,a-z,A-Z]+)([.,-]([0-9,a-z,A-Z]+))';
@@ -148,7 +151,24 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
 
     return (preg_match($rule, $str)? true : false);
 
-}
+    }
+    public function hashSSHA($password) {
+ 
+        $salt = sha1("semanamaua2");
+        $salt = substr($salt, 0, 10);
+        $encrypted = base64_encode(sha1($password . $salt, true) . $salt);
+        
+        return $encrypted;
+    }
+ 
+    
+    public function checkhashSSHA($password) {
+        $salt = sha1("semanamaua2");
+        $salt = substr($salt, 0, 10);
+        $hash = base64_encode(sha1($password . $salt, true) . $salt);
+ 
+        return $hash;
+    }
 
 }
 
