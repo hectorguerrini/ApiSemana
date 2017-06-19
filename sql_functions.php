@@ -154,7 +154,7 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
     }
     public function hashSSHA($password) {
  
-        $salt = sha1("semanamaua2");
+        $salt = sha1($password);
         $salt = substr($salt, 0, 10);
         $encrypted = base64_encode(sha1($password . $salt, true) . $salt);
         
@@ -163,7 +163,7 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
  
     
     public function checkhashSSHA($password) {
-        $salt = sha1("semanamaua2");
+        $salt = sha1($password);
         $salt = substr($salt, 0, 10);
         $hash = base64_encode(sha1($password . $salt, true) . $salt);
  
