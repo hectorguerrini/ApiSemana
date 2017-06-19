@@ -84,7 +84,7 @@ function verificarCPF( $cpf ) {
     } 
     $resto = $soma%11;
     if($resto < 2) {
-        $codigo .= "0"
+        $codigo .= "0";
     }else{
         $codigo .= (11-$resto);
     }
