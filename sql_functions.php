@@ -122,7 +122,7 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
             
 
             if($stmt){
-                $stmt->close();
+                
                 return true;
             }else{
                 return false;
