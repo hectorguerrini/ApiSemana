@@ -76,19 +76,34 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         }
     }
     public function listarTabelas($table){
-        $sql="SELECT * FROM ".$table;
+        if($table != 'patrocinador'){
         
-        $stmt = $this->conn->query($sql);
-        $print=array();
+            $sql="SELECT * FROM ".$table;
         
-        if($stmt){
+            $stmt = $this->conn->query($sql);
+            $print=array();
+        
+            if($stmt){
             
-            while($row = $stmt->fetch_assoc()){
-                $print[]=$row; 
+                while($row = $stmt->fetch_assoc()){
+                    $print[]=$row; 
+                }
+                $stmt->close();
             }
-            $stmt->close();
-        }
+        }else{
+            $sql="SELECT * FROM '$table' ORDER BY tier_patrocinador";
         
+            $stmt = $this->conn->query($sql);
+            $print=array();
+        
+            if($stmt){
+            
+                while($row = $stmt->fetch_assoc()){
+                    $print[]=$row; 
+                }
+                $stmt->close();
+            }
+        }
         return $print;
     }   
     public function listarCursos($periodo){
