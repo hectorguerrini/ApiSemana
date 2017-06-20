@@ -119,9 +119,10 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
             $novoPont = $p['pontos_participante'] + $pontos;  
             $sql = "UPDATE participante SET pontos_participante = '$novoPont' WHERE email_participante = '$email'";
             $stmt = $this->conn->query($sql);
-            $stmt->close();
+            
 
             if($stmt){
+                $stmt->close();
                 return true;
             }else{
                 return false;
