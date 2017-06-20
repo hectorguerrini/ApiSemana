@@ -107,28 +107,32 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         return $curso;
     }
     public function adcionarPontos($email,$pontos,$curso){
-        $stmt = $this->conn->query("SELECT pontos_participante FROM participante WHERE email_participante = '$email'");
-        $p = $stmt->fetch_assoc();
-        $stmt->close();
-
-        $novoPont = $p['pontos_participante'] + $pontos;  
-        $sql = "UPDATE participante SET pontos_participante = '$novoPont' WHERE email_participante = '$email'";
-        $stmt = $this->conn->query($sql);
-
-      
-
-
+        
         $sql = "INSERT INTO participante_curso(id_curso,email_participante) VALUES ('$curso','$email')";
-        $stmt = $this->conn->query($sql);    
-       
-
+        $stmt = $this->conn->query($sql); 
         if($stmt){
+              
+            $stmt = $this->conn->query("SELECT pontos_participante FROM participante WHERE email_participante = '$email'");
+            $p = $stmt->fetch_assoc();
             $stmt->close();
-            return true;
+
+            $novoPont = $p['pontos_participante'] + $pontos;  
+            $sql = "UPDATE participante SET pontos_participante = '$novoPont' WHERE email_participante = '$email'";
+            $stmt = $this->conn->query($sql);
+            $stmt->close();
+
+            if($stmt){{
+                return true;
+            }else{
+                return false;
+            }
         }else{
             
             return false;
         }
+      
+
+        
     } 
     public function listarRanking(){
       $sql = "SELECT nome_participante,pontos_participante,email_participante FROM participante ORDER BY pontos_participante DESC";
