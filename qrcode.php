@@ -11,7 +11,7 @@ if(isset($_POST['email']) && isset($_POST['pontos']) && isset($_POST['curso'])){
 
     if($db->adcionarPontos($email,$pontos,$curso) == true){
         $resposta["error"] = FALSE;
-        $resposta["error_msg"] = "Pontos Adcionados"
+        $resposta["error_msg"] = "Pontos Adcionados";
         echo json_encode($resposta);
     }else{
         $resposta["error"] = TRUE;
