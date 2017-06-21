@@ -121,9 +121,38 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
         
         return $curso;
     }
-    public function adcionarPontos($email,$pontos,$curso){
+    public function adcionarPontosCurso($email,$pontos,$id){
         
-        $sql = "INSERT INTO participante_curso(id_curso,email_participante) VALUES ('$curso','$email')";
+        $sql = "INSERT INTO participante_curso(id_curso,email_participante) VALUES ('$id','$email')";
+        $stmt = $this->conn->query($sql); 
+        if($stmt){
+              
+            $stmt = $this->conn->query("SELECT pontos_participante FROM participante WHERE email_participante = '$email'");
+            $p = $stmt->fetch_assoc();
+            $stmt->close();
+
+            $novoPont = $p['pontos_participante'] + $pontos;  
+            $sql = "UPDATE participante SET pontos_participante = '$novoPont' WHERE email_participante = '$email'";
+            $stmt = $this->conn->query($sql);
+            
+
+            if($stmt){
+                
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            
+            return false;
+        }
+      
+
+        
+    } 
+    public function adcionarPontosPalestra($email,$pontos,$id){
+        
+        $sql = "INSERT INTO participante_palestra(id_palestra,email_participante) VALUES ('$id','$email')";
         $stmt = $this->conn->query($sql); 
         if($stmt){
               
