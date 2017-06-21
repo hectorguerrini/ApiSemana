@@ -91,7 +91,7 @@ celular_participante) VALUES (?,?,?,?,?,?,?,?,?)");
                 $stmt->close();
             }
         }else{
-            $sql="SELECT * FROM '$table' ORDER BY tier_patrocinador";
+            $sql="SELECT * FROM patrocinador ORDER BY tier_patrocinador ASC";
         
             $stmt = $this->conn->query($sql);
             $print=array();
