@@ -56,7 +56,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
             echo json_encode($resposta);
         }
     }
-}'' else {
+}else {
     $resposta["error"] = TRUE;
     $resposta["error_msg"] = "Insira os dados necessarios.";
     echo json_encode($resposta);
