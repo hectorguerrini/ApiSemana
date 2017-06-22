@@ -31,11 +31,8 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
                     if ($user) {
         
                         $resposta["error"] = FALSE;
-                        $resposta["user"]["nome"] = $user["nome_participante"];
-                        $resposta["user"]["email"] = $user["email_participante"];
-                        if($db->adcionarPontos($email,10) == true){
-                        $resposta["user"]["pontos"] = "10";
-                        }   
+                        $resposta["error_msg"] = "Cadastrado com sucesso!"
+                        
                         echo json_encode($resposta);
                     } else {
                     
@@ -59,7 +56,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
             echo json_encode($resposta);
         }
     }
-} else {
+}'' else {
     $resposta["error"] = TRUE;
     $resposta["error_msg"] = "Insira os dados necessarios.";
     echo json_encode($resposta);
