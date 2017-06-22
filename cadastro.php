@@ -31,7 +31,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password'])
                     if ($user) {
         
                         $resposta["error"] = FALSE;
-                        $resposta["error_msg"] = "Cadastrado com sucesso!"
+                        $resposta["error_msg"] = "Cadastrado com sucesso!";
                         
                         echo json_encode($resposta);
                     } else {
