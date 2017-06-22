@@ -18,8 +18,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         // use is found
         $resposta["error"] = FALSE;
        
-        $resposta["user"]["name"] = $user["name"];
-        $resposta["user"]["email"] = $user["email"];
+        $resposta["error_msg"] = "Conectado com Sucesso!.";
        
         echo json_encode($resposta);
     } else {
